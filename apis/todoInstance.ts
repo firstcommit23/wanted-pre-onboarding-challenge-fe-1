@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
 const todoInstance: AxiosInstance = axios.create({
-  baseURL: '',
+  baseURL: 'http://localhost:8080',
 });
 
 todoInstance.interceptors.request.use(
