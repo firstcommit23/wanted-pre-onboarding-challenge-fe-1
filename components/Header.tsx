@@ -1,6 +1,16 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useLayoutEffect, useState } from 'react';
 
 const Header = () => {
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const router = useRouter();
+
+  useLayoutEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLogin(!!token);
+  }, []);
+
   return (
     <div>
       <div>
@@ -9,12 +19,30 @@ const Header = () => {
         </Link>
         메인 입니다
       </div>
-      <Link href="/auth/signup">
-        <a>회원가입</a>
-      </Link>
-      <Link href="/auth/login">
-        <a>로그인</a>
-      </Link>
+
+      {isLogin && (
+        <a
+          href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            localStorage.removeItem('token');
+            setIsLogin(false);
+            router.push('/');
+          }}>
+          로그아웃
+        </a>
+      )}
+
+      {!isLogin && (
+        <>
+          <Link href="/auth/signup">
+            <a>회원가입</a>
+          </Link>
+          <Link href="/auth/login">
+            <a>로그인</a>
+          </Link>
+        </>
+      )}
     </div>
   );
 };
