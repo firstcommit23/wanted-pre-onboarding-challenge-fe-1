@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const router = useRouter();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLogin(!!token);
   }, []);
