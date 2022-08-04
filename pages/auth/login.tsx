@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { login } from '@/apis/api';
 import type { User } from '@/apis/type';
@@ -7,6 +7,12 @@ import EmailPasswordInputView from '@/components/EmailPasswordInputView';
 const Login = () => {
   const [user, setUser] = useState<User>({ email: '', password: '' });
   const router = useRouter();
+
+  useEffect(() => {
+    if (!!localStorage.getItem('token')) {
+      router.push('/');
+    }
+  }, []);
 
   const handleButton = async () => {
     // TODO: 유효성 체크하기
