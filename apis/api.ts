@@ -11,7 +11,7 @@ export const createTodo = (todo: Todo) => {
 };
 
 export const updateTodo = (todo: Todo) => {
-  return todoInstance.put(`/todos/${todo.id}`);
+  return todoInstance.put(`/todos/${todo.id}`, todo);
 };
 
 export const deleteTodo = (todo: Todo) => {
