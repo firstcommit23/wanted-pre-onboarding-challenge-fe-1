@@ -9,8 +9,14 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title>Todo App!</title>
       </Head>
-      <Header />
-      <Component {...pageProps} />
+      <div className="w-full y-full my-auto bg-indigo-100/30">
+        <Header />
+        <div className=" my-auto">
+          <div className="max-w-screen-md">
+            <Component {...pageProps} />
+          </div>
+        </div>
+      </div>
     </>
   );
 };
