@@ -18,6 +18,7 @@ const TodoList = ({ todos }: { todos: Todo[] }) => {
           </li>
         );
       })}
+      {todos.length <= 0 && <div>할일을 입력해주세요 ✨</div>}
     </>
   );
 };

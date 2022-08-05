@@ -10,7 +10,8 @@ const Home = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsLogin(!!localStorage.getItem('token'));
+    const token = localStorage.getItem('token');
+    setIsLogin(!!token);
     fetchTodos();
   }, []);
 

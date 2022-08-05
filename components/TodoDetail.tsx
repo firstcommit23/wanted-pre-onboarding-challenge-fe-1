@@ -29,7 +29,11 @@ const TodoDetail = ({
       type="text"
       name="title"
       value={editTodo?.title}
-      onChange={(e) => setEditTodo({ ...editTodo, title: e.target.value })}
+      onChange={(e) =>
+        setEditTodo((prev) => {
+          return { content: prev?.content || '', title: e.target.value };
+        })
+      }
     />
   );
   const titleText = todo.title;
@@ -40,7 +44,11 @@ const TodoDetail = ({
       type="text"
       name="content"
       value={editTodo?.content}
-      onChange={(e) => setEditTodo({ ...editTodo, content: e.target.value })}
+      onChange={(e) =>
+        setEditTodo((prev) => {
+          return { title: prev?.title || '', content: e.target.value };
+        })
+      }
     />
   );
   const contentText = todo.content;

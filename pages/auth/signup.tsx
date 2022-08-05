@@ -9,22 +9,21 @@ const SignUp = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!!localStorage.getItem('token')) {
+    if (localStorage.getItem('token')) {
       router.push('/');
     }
   }, []);
 
   const handleButton = async () => {
-    // TODO: 유효성 체크하기
-    if (!user.email || !user.password) {
-      alert('아이디와 비밀번호를 입력하세요.');
-      return;
-    }
-
-    const result = await signup(user);
-    if (result.status === 200) {
-      alert(result.data.message);
-      router.push('/auth/login');
+    try {
+      const result = await signup(user);
+      if (result.status === 200) {
+        alert(result.data.message);
+        router.push('/auth/login');
+      }
+    } catch (error) {
+      const errorMessage = error.response?.data?.details;
+      errorMessage && alert(errorMessage);
     }
     // TODO: Uncaught (in promise) error 고치기
   };
