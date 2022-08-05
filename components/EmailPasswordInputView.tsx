@@ -40,6 +40,7 @@ const EmailPasswordInputView = ({
       setErrorMessage('패스워드는 필수 입력입니다.');
       return false;
     }
+    /* eslint-disable */
     if (!user.email.match(/^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)) {
       setErrorMessage('이메일 형식이 유효하지 않습니다.');
       return false;

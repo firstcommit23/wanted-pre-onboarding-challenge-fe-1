@@ -23,7 +23,7 @@ const Login = () => {
         localStorage.setItem('token', JSON.stringify(token));
         router.push('/');
       }
-    } catch (error) {
+    } catch (error: any) {
       const errorMessage = error.response?.data?.details;
       errorMessage && alert(errorMessage);
     }

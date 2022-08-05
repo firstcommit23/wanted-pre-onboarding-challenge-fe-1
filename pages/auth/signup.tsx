@@ -21,7 +21,7 @@ const SignUp = () => {
         alert(result.data.message);
         router.push('/auth/login');
       }
-    } catch (error) {
+    } catch (error: any) {
       const errorMessage = error.response?.data?.details;
       errorMessage && alert(errorMessage);
     }
