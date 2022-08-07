@@ -21,7 +21,6 @@ const EmailPasswordInputView = ({
   const [isEnabledSubmitButton, setIsEnabledSubmitButton] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isLoad, setIsLoad] = useState<boolean>(false);
-  const [submitButtonClassName, setSubmitButtonClassName] = useState<string>('');
 
   useEffect(() => {
     setIsLoad(true);
