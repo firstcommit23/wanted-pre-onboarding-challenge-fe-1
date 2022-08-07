@@ -3,6 +3,10 @@ import type { Todo } from '@/apis/type';
 import { useRouter } from 'next/router';
 import { deleteTodo, updateTodo } from '@/apis/api';
 
+const ENABLED_BUTTON_CLASS =
+  'p-2.5 text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200  font-medium rounded-lg text-sm px-3 py-1.5 text-center mr-2 my-2';
+const DISABLED_BUTTON_CLASS =
+  'p-2.5 text-white bg-gray-300 focus:outline-none font-medium rounded-lg text-sm px-3 py-1.5 text-center mr-2 my-2';
 const TodoDetail = ({
   todos,
   setTodos,
@@ -34,14 +38,14 @@ const TodoDetail = ({
           return { content: prev?.content || '', title: e.target.value };
         })
       }
+      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
     />
   );
   const titleText = todo.title;
   const title = isEditMode ? titleEdit : titleText;
 
   const contentEdit = (
-    <input
-      type="text"
+    <textarea
       name="content"
       value={editTodo?.content}
       onChange={(e) =>
@@ -49,6 +53,7 @@ const TodoDetail = ({
           return { title: prev?.title || '', content: e.target.value };
         })
       }
+      className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
     />
   );
   const contentText = todo.content;
@@ -96,28 +101,43 @@ const TodoDetail = ({
   };
 
   return (
-    <>
-      <h1>투두 상세입니다.</h1>
-      <button disabled={!isEditMode} onClick={handleUpdate}>
-        저장
-      </button>
-      <button disabled={!isEditMode} onClick={handleEditModeCancle}>
-        취소
-      </button>
-      <button disabled={isEditMode} onClick={handleEditMode}>
-        수정
-      </button>
-      <button onClick={handleDeleteButton} disabled={isEditMode}>
-        삭제
-      </button>
-      <div>
-        <div>아이디 : {todo.id}</div>
-        <div>제목 :{title}</div>
-        <div>내용 :{content}</div>
+    <div className="pt-12 px-3">
+      <h1 className="block w-full text-2xl">상세 내용은 아래에서 확인하세요 👇</h1>
+      <div className="text-sm">
+        <div className="font-bold text-2xl pt-4">{title}</div>
+        <div className="text-lg whitespace-pre-wrap py-4">{content}</div>
+        <div>글번호 : {todo.id}</div>
         <div>생성일자 : {todo.createdAt}</div>
         <div>수정일자 : {todo.updatedAt}</div>
       </div>
-    </>
+
+      <div>
+        <button
+          disabled={!isEditMode}
+          onClick={handleUpdate}
+          className={isEditMode ? ENABLED_BUTTON_CLASS : DISABLED_BUTTON_CLASS}>
+          저장
+        </button>
+        <button
+          disabled={!isEditMode}
+          onClick={handleEditModeCancle}
+          className={isEditMode ? ENABLED_BUTTON_CLASS : DISABLED_BUTTON_CLASS}>
+          취소
+        </button>
+        <button
+          disabled={isEditMode}
+          onClick={handleEditMode}
+          className={!isEditMode ? ENABLED_BUTTON_CLASS : DISABLED_BUTTON_CLASS}>
+          수정
+        </button>
+        <button
+          onClick={handleDeleteButton}
+          disabled={isEditMode}
+          className={!isEditMode ? ENABLED_BUTTON_CLASS : DISABLED_BUTTON_CLASS}>
+          삭제
+        </button>
+      </div>
+    </div>
   );
 };
 

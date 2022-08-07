@@ -37,12 +37,25 @@ const Login = () => {
   };
 
   return (
-    <EmailPasswordInputView
-      authType="login"
-      user={user}
-      handleChange={handleChange}
-      handleButton={handleButton}
-    />
+    <>
+      <EmailPasswordInputView
+        authType="login"
+        user={user}
+        handleChange={handleChange}
+        handleButton={handleButton}
+      />
+      <div className="py-6 px-3">
+        로그인 없이 사용하실려면 클릭하세요! 👉{' '}
+        <span
+          className="underline"
+          onClick={() => {
+            localStorage.setItem('token', 'test');
+            router.push('/');
+          }}>
+          click!
+        </span>
+      </div>
+    </>
   );
 };
 

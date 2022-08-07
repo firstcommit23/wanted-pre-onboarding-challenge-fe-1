@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import Header from '@/components/Header';
 import '../main.css';
+import Header from '@/components/Header';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -9,12 +9,10 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title>Todo App!</title>
       </Head>
-      <div className="w-full y-full my-auto bg-indigo-100/30">
+      <div className="w-full bg-indigo-100">
         <Header />
-        <div className=" my-auto">
-          <div className="max-w-screen-md">
-            <Component {...pageProps} />
-          </div>
+        <div className="w-full max-w-screen-md m-auto bg-indigo-100">
+          <Component {...pageProps} />
         </div>
       </div>
     </>

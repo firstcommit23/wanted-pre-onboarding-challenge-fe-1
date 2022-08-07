@@ -12,6 +12,9 @@ const Home = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLogin(!!token);
+  });
+
+  useEffect(() => {
     fetchTodos();
   }, []);
 
@@ -21,20 +24,17 @@ const Home = () => {
   };
 
   return (
-    <div>
-      {!isLogin && <>로그인 후 사용이 가능합니다 ✨</>}
+    <>
+      {!isLogin && <div className="text-xl px-3">로그인 후 사용이 가능합니다 ✨</div>}
 
       {isLogin && (
         <>
-          <hr />
           <TodoInput todos={todos} setTodos={setTodos} />
-          <hr />
           <TodoList todos={todos} />
-          <hr />
           <TodoDetail todos={todos} setTodos={setTodos} />
         </>
       )}
-    </div>
+    </>
   );
 };
 

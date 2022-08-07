@@ -8,6 +8,10 @@ interface IEmailPasswordInputView {
   handleButton: () => void;
 }
 
+const ENABLED_BUTTON_CLASS =
+  'block p-2.5 w-full text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 my-2';
+const DISABLED_BUTTON_CLASS =
+  'block p-2.5 w-full text-white bg-gray-300 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 my-2';
 const EmailPasswordInputView = ({
   authType,
   user,
@@ -17,6 +21,7 @@ const EmailPasswordInputView = ({
   const [isEnabledSubmitButton, setIsEnabledSubmitButton] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isLoad, setIsLoad] = useState<boolean>(false);
+  const [submitButtonClassName, setSubmitButtonClassName] = useState<string>('');
 
   useEffect(() => {
     setIsLoad(true);
@@ -55,8 +60,8 @@ const EmailPasswordInputView = ({
 
   const typeKorStr = authType === 'login' ? '로그인' : '회원가입';
   return (
-    <div>
-      <div>{typeKorStr} 하세요</div>
+    <div className="px-3">
+      <h1 className="block w-full text-2xl my-3">✨ {typeKorStr} 하세요</h1>
       <div>
         <input
           type="text"
@@ -64,6 +69,7 @@ const EmailPasswordInputView = ({
           value={user.email}
           onChange={handleChange}
           placeholder="아이디를 입력하세요"
+          className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         />
       </div>
       <div>
@@ -73,11 +79,15 @@ const EmailPasswordInputView = ({
           value={user.password}
           onChange={handleChange}
           placeholder="비밀번호를 입력하세요"
+          className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         />
       </div>
       <div>
         {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
-        <button onClick={handleButton} disabled={!isEnabledSubmitButton}>
+        <button
+          onClick={handleButton}
+          disabled={!isEnabledSubmitButton}
+          className={isEnabledSubmitButton ? ENABLED_BUTTON_CLASS : DISABLED_BUTTON_CLASS}>
           {typeKorStr}
         </button>
       </div>
