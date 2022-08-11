@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import qs from 'qs';
 
 const todoInstance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 });
 
 todoInstance.interceptors.request.use(

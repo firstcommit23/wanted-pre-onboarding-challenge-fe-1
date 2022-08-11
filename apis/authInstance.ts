@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import qs from 'qs';
 
 const authInstance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 });
 
 authInstance.interceptors.request.use(

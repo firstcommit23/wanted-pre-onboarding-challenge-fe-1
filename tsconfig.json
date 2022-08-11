@@ -20,7 +20,8 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
-      "@/apis/*": ["apis/*"]
+      "@/apis/*": ["apis/*"],
+      "@/hooks/*": ["hooks/*"]
     },
     "incremental": true
   },
